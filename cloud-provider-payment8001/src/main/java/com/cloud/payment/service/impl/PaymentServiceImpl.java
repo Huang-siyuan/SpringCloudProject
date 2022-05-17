@@ -1,8 +1,8 @@
 package com.cloud.payment.service.impl;
 
+import com.cloud.api.DTO.CommonResult;
+import com.cloud.api.entity.Payment;
 import com.cloud.payment.DAO.PaymentDao;
-import com.cloud.payment.DTO.CommonResult;
-import com.cloud.payment.entity.Payment;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

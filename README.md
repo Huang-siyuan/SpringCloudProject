@@ -1,2 +1,2 @@
-# SpringCloudTry
+# SpringCloudProject
 My first microservice project :)

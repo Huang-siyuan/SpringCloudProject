@@ -1,7 +1,7 @@
 package com.cloud.payment.controller;
 
-import com.cloud.payment.DTO.CommonResult;
-import com.cloud.payment.entity.Payment;
+import com.cloud.api.DTO.CommonResult;
+import com.cloud.api.entity.Payment;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +22,8 @@ public class PaymentController {
     private final PaymentService paymentService;
 
     @PostMapping("/")
-    public CommonResult<Integer> create(Payment payment){
+    public CommonResult<Integer> create(@RequestBody Payment payment) {
+        log.info("Received request of creating: " + payment);
         return paymentService.create(payment);
     }
 

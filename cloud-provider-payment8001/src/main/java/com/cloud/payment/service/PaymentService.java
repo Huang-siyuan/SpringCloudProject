@@ -1,7 +1,7 @@
 package com.cloud.payment.service;
 
-import com.cloud.payment.DTO.CommonResult;
-import com.cloud.payment.entity.Payment;
+import com.cloud.api.DTO.CommonResult;
+import com.cloud.api.entity.Payment;
 import org.apache.ibatis.annotations.Param;
 
 /**

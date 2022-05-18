@@ -10,6 +10,18 @@ spring:
     username: root
     password: 123456
 
+
 mybatis:
   mapperLocations: classpath:mapper/*.xml
-  type-aliases-package: com.cloud.payment.entity
+  type-aliases-package: com.cloud.api.entity
+
+eureka:
+  client:
+    # means whether to register itself in Eureka Server, the default is true
+    register-with-eureka: true
+
+    # means whether to fetch data from Eureka Server, the default is true.
+    # Single node mode doesn't matter but cluster must be set to true to work with ribbon.
+    fetchRegistry: true
+    service-url:
+      defaultZone: http://localhost:7001/eureka

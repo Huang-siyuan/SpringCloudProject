@@ -11,6 +11,7 @@
         <module>cloud-provider-payment8001</module>
         <module>cloud-consumer-order80</module>
         <module>cloud-api-commons</module>
+        <module>cloud-eureka-server-7001</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -41,6 +42,7 @@
         <mysql.version>8.0.13</mysql.version>
         <druid.version>1.2.9</druid.version>
         <mybatis.spring.boot.version>2.2.2</mybatis.spring.boot.version>
+        <eruka.version>3.1.2</eruka.version>
     </properties>
 
     <dependencyManagement>

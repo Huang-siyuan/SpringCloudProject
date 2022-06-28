@@ -2,11 +2,10 @@ package com.cloud.payment.controller;
 
 import com.cloud.api.DTO.CommonResult;
 import com.cloud.api.entity.Payment;
+import com.cloud.payment.service.PaymentService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
-import com.cloud.payment.service.PaymentService;
 
 /**
  * @program: SpringCloudTry
@@ -29,12 +28,12 @@ public class PaymentController {
     }
 
     @GetMapping("/{id}")
-    public CommonResult<Payment> getPaymentById(@PathVariable("id") Long id){
+    public CommonResult<Payment> getPaymentById(@PathVariable("id") Long id) {
         return paymentService.getPaymentById(id);
     }
 
     @GetMapping("/test")
-    public String test(){
+    public String test() {
         return "Hello test";
     }
 

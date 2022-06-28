@@ -3,11 +3,11 @@ package com.cloud.payment.service.impl;
 import com.cloud.api.DTO.CommonResult;
 import com.cloud.api.entity.Payment;
 import com.cloud.payment.DAO.PaymentDao;
+import com.cloud.payment.service.PaymentService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import com.cloud.payment.service.PaymentService;
 
 /**
  * @program: SpringCloudTry
@@ -39,13 +39,13 @@ public class PaymentServiceImpl implements PaymentService {
         }
     }
 
-    public CommonResult<Payment> getPaymentById(Long id){
+    public CommonResult<Payment> getPaymentById(Long id) {
         Payment payment = paymentDao.getPaymentById(id);
         log.info("Result of inserting: " + payment.toString());
-        if (payment.getId() !=null){
+        if (payment.getId() != null) {
             return new CommonResult<>(200, "Select successfully by port " + serverPort, payment);
         } else {
-            return new CommonResult<>(444,"Select Failed",null);
+            return new CommonResult<>(444, "Select Failed", null);
         }
     }
 }

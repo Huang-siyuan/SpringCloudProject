@@ -1,0 +1,27 @@
+server:
+  port: 8002
+
+spring:
+  application:
+    name: cloud-payment-service
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSourceC3P0Adapter
+    url: jdbc:mysql://localhost:3306/SpringCloudTry?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
+    username: root
+    password: 123456
+
+
+mybatis:
+  mapperLocations: classpath:mapper/*.xml
+  type-aliases-package: com.cloud.api.entity
+
+eureka:
+  client:
+    # means whether to register itself in Eureka Server, the default is true
+    register-with-eureka: true
+
+    # means whether to fetch data from Eureka Server, the default is true.
+    # Single node mode doesn't matter but cluster must be set to true to work with ribbon.
+    fetchRegistry: true
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka # Cluster mode

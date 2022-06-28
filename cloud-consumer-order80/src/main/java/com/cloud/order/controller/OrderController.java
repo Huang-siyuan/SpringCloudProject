@@ -20,7 +20,8 @@ import org.springframework.web.client.RestTemplate;
 @RequestMapping("/consumer")
 public class OrderController {
 
-    public static final String PAYMENT_URL = "http://localhost:8001/paymentRecord/";
+    // We can get the servise from eureka server by name. It can keep the load balance.
+    public static final String PAYMENT_URL = "http://CLOUD-PAYMENT-SERVICE/";
 
     private final RestTemplate restTemplate;
 
@@ -33,7 +34,7 @@ public class OrderController {
     @GetMapping("/payment/{id}")
     public CommonResult getPayment(@PathVariable Long id) {
         log.info("get payment in consumer: {}", id.toString());
-        return restTemplate.getForObject(PAYMENT_URL + id, CommonResult.class);
+        return restTemplate.getForObject(PAYMENT_URL + "paymentRecord/" + id, CommonResult.class);
     }
 
 }

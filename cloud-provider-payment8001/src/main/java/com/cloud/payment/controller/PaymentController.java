@@ -5,8 +5,12 @@ import com.cloud.api.entity.Payment;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.*;
 import com.cloud.payment.service.PaymentService;
+
+import java.util.List;
 
 /**
  * @program: SpringCloudTry
@@ -21,6 +25,7 @@ import com.cloud.payment.service.PaymentService;
 @Slf4j
 public class PaymentController {
     private final PaymentService paymentService;
+    private final DiscoveryClient discoveryClient;
 
     @PostMapping("/")
     public CommonResult<Integer> create(@RequestBody Payment payment) {
@@ -29,13 +34,27 @@ public class PaymentController {
     }
 
     @GetMapping("/{id}")
-    public CommonResult<Payment> getPaymentById(@PathVariable("id") Long id){
+    public CommonResult<Payment> getPaymentById(@PathVariable("id") Long id) {
         return paymentService.getPaymentById(id);
     }
 
     @GetMapping("/test")
-    public String test(){
+    public String test() {
         return "Hello test";
     }
 
+    @GetMapping("/discovery")
+    public Object discovery() {
+        List<String> services = discoveryClient.getServices();
+        for (String service : services) {
+            log.info("****element: " + service);
+        }
+
+        List<ServiceInstance> instances = discoveryClient.getInstances("CLOUD-PAYMENT-SERVICE");
+        for (ServiceInstance instance : instances) {
+            log.info(instance.getServiceId() + "\t" + instance.getHost() + "\t" + instance.getPort() + "\t" + instance.getUri());
+        }
+
+        return this.discoveryClient;
+    }
 }

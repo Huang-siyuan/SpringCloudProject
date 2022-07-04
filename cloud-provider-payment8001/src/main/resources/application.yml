@@ -25,3 +25,9 @@ eureka:
     fetchRegistry: true
     service-url:
       defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka # Cluster mode
+
+  instance:
+    instance-id: payment8001 # This is the instance id of this service
+    prefer-ip-address: true  # To show the ip address of this service in Eureka Server (Usually in the lower left corner).
+    lease-renewal-interval-in-seconds: 1 # The interval of renewal of lease(heart beat).
+    lease-expiration-duration-in-seconds: 2 # The duration of lease(heart beat).

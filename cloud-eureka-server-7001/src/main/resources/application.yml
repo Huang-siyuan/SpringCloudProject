@@ -9,3 +9,6 @@ eureka:
     fetch-registry: false
     service-url:
       defaultZone: http://eureka7002.com:7002/eureka
+  server:
+    enable-self-preservation: false # If server doesn't get heartbeat from client in 2s, it will be removed from Eureka Server.
+    eviction-interval-timer-in-ms: 2000 # If the network is very bad, then we can turn on the self preservation feature. Or try to increase the value of heartbeat interval.

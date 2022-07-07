@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import com.cloud.payment.service.PaymentService;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @program: SpringCloudTry
@@ -56,5 +57,15 @@ public class PaymentController {
         }
 
         return this.discoveryClient;
+    }
+
+    @GetMapping("/feign/timeout")
+    public String paymentFeignTimeout() {
+        try {
+            TimeUnit.SECONDS.sleep(3); // For timeout test
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return "8001";
     }
 }

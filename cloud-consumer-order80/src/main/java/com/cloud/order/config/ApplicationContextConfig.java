@@ -17,6 +17,8 @@ public class ApplicationContextConfig {
     /**
      * @return RestTemplate
      * @description: RestTemplate bean. We can use this bean to send http request to call payment service.
+     *               And @loadBalanced annotation is used to make the RestTemplate load balance.
+     *               The default algorithm is round-robin. And we can choose other algorithm like: random, leastActive, etc.
      */
     @Bean
     @LoadBalanced

@@ -4,6 +4,7 @@ import com.cloud.api.DTO.CommonResult;
 import com.cloud.api.entity.Payment;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -35,6 +36,19 @@ public class OrderController {
     public CommonResult getPayment(@PathVariable Long id) {
         log.info("get payment in consumer: {}", id.toString());
         return restTemplate.getForObject(PAYMENT_URL + "paymentRecord/" + id, CommonResult.class);
+    }
+
+    // A test for function getForEntity().
+    @GetMapping("/payment/forEntity/{id}")
+    public CommonResult getPayment2(@PathVariable Long id) {
+        ResponseEntity<CommonResult> entity = restTemplate.getForEntity(PAYMENT_URL + "paymentRecord/" + id, CommonResult.class);
+
+        if (entity.getStatusCode().is2xxSuccessful()) {
+            log.info("get payment in consumer: {}", entity.getBody().toString());
+            return entity.getBody();
+        } else {
+            return new CommonResult<>(500, "error");
+        }
     }
 
 }

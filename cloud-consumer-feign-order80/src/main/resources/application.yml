@@ -20,3 +20,7 @@ ribbon:
   ReadTimeout: 5000
   # The time limit for reading the available data from the server after the connection is established. It depends on the network.
   ConnectTimeout: 5000
+
+logging:
+  level:
+    com.cloud.feign.service.PaymentFeignService: debug

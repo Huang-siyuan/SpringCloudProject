@@ -1,10 +1,10 @@
-package org.cloud.feign.controller;
+package com.cloud.feign.controller;
 
 import com.cloud.api.DTO.CommonResult;
 import com.cloud.api.entity.Payment;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.cloud.feign.service.PaymentFeignService;
+import com.cloud.feign.service.PaymentFeignService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

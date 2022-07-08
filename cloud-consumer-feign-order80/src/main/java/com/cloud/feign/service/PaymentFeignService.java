@@ -1,4 +1,4 @@
-package org.cloud.feign.service;
+package com.cloud.feign.service;
 
 import com.cloud.api.DTO.CommonResult;
 import com.cloud.api.entity.Payment;

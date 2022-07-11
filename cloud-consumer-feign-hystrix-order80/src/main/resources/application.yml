@@ -24,3 +24,9 @@ ribbon:
 logging:
   level:
     com.cloud.feign.service.PaymentFeignService: debug
+
+# If we want to use hystrix, we need to add the following configuration:
+# If we use the pure hystrix, like our provider. We don't need to add this config.
+feign:
+  hystrix:
+    enabled: true

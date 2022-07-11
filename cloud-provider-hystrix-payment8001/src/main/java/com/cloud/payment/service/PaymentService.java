@@ -33,10 +33,10 @@ public class PaymentService {
      * @description: @HystrixCommand can help us to make this method fallback. 3s is the normal time.
      * It's a limit. If overtime or throws exceptions, then Hystrix will call the fallback method.
      */
-    @HystrixCommand(fallbackMethod = "paymentInfo_TimeoutHandler", commandProperties = {@HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "3000")})
+    @HystrixCommand(fallbackMethod = "paymentInfo_TimeoutHandler", commandProperties = {@HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "10000")})
     public String paymentInfo_Timeout(Integer id) {
         log.info("Begin to throw Exception");
-        int age = 10 / 0;
+//        int age = 10 / 0;
         log.info("End of throw Exception"); // Well, looks like program won't be this line. Hystrix will call the fallback method.
         int timeNumber = 5000;
         try {

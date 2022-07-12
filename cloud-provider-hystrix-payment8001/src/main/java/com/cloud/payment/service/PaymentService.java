@@ -1,9 +1,12 @@
 package com.cloud.payment.service;
 
+import cn.hutool.core.util.IdUtil;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
+import com.netflix.ribbon.proxy.annotation.Hystrix;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 /**
  * @program: SpringCloudTry
@@ -50,5 +53,24 @@ public class PaymentService {
     // If overtime, we will run this.
     public String paymentInfo_TimeoutHandler(Integer id) {
         return "Server is busy or service can't be used, please try again later, id: " + id;
+    }
+
+    // Service circuit breaker
+    @HystrixCommand(fallbackMethod = "paymentCircuitBreaker_fallback", commandProperties = {@HystrixProperty(name = "circuitBreaker.enabled", value = "true"), // Enable circuit breaker
+            @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "10"), // If 10 requests in 10s, then open the circuit
+            @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "10000"), // 10s, then close the circuit. Default is 5s.
+            @HystrixProperty(name = "circuitBreaker.errorThresholdPercentage", value = "60") // If 60% requests are failed, then open the circuit
+    })
+    public String paymentCircuitBreaker(@PathVariable("id") Integer id) {
+        if (id < 0) {
+            log.error("*****id should less than 0");
+            throw new RuntimeException("*****id should less than 0");
+        }
+        String serialNumber = IdUtil.simpleUUID();
+        return Thread.currentThread().getName() + ": PaymentCircuitBreaker, id: " + id + "\t serialNumber: " + serialNumber;
+    }
+
+    public String paymentCircuitBreaker_fallback(@PathVariable("id") Integer id) {
+        return "Id shouldn't be negative, id: " + id;
     }
 }

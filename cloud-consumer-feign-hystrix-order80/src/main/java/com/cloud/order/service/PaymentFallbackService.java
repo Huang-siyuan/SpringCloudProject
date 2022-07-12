@@ -1,5 +1,6 @@
 package com.cloud.order.service;
 
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 /**
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Service;
  * @create: 2022-07-11 10:37
  **/
 
-@Service
+@Component
 public class PaymentFallbackService implements PaymentHystrixService {
     @Override
     public String paymentInfo_OK(Integer id) {
